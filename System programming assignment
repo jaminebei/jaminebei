@@ -1,0 +1,95 @@
+#include <stdio.h>   // For standard I/O operations
+#include <stdlib.h>  // For exit() function
+#include <fcntl.h>   // For file control options
+#include <unistd.h>  // For file operations
+
+int main() {
+    int file_desc;  // File descriptor
+
+    // Open a file named "example.txt" with read-write access
+    // If the file does not exist, it will be created; If it exists, its content will be truncated
+    file_desc = open("example.txt", O_RDWR | O_CREAT | O_TRUNC, 0666);
+    if (file_desc < 0) {
+        perror("Error opening file");
+        exit(1);
+    }
+
+    // Write "Hello world" to the file
+    if (write(file_desc, "Hello world\n", 12) != 12) {
+        perror("Error writing to file");
+        exit(1);
+    }
+
+    // Seek to the beginning of the file
+    if (lseek(file_desc, 0, SEEK_SET) == -1) {
+        perror("Error seeking file");
+        exit(1);
+    }
+
+    char buffer[13];  // Buffer to hold the read content (plus null terminator)
+    
+    // Read the content of the file into the buffer
+    if (read(fi
+
+    Question 2
+    III).#include <stdio.h>
+
+int main() {
+    int customerId, unitsConsumed;
+    char customerName[50];
+    float totalBill;
+    int chargePerUnit;
+
+    // Prompt user for input
+    printf("Enter customer ID: ");
+    scanf("%d", &customerId);
+    printf("Enter customer name: ");
+    scanf("%s", customerName);
+    printf("Enter units consumed: ");
+    scanf("%d", &unitsConsumed);
+
+    // Check conditions and apply necessary calculations
+    if (unitsConsumed < 200) {
+        chargePerUnit = 120;
+    } else if (unitsConsumed < 400) {
+        chargePerUnit = 150;
+    } else if (unitsConsumed < 600) {
+        chargePerUnit = 180;
+    } else {
+        chargePerUnit = 200;
+    }
+
+    // Calculate total bill
+    totalBill = unitsConsumed * chargePerUnit;
+
+    // Display the electricity bill
+    printf("Customer ID: %d\n", customerId);
+    printf("Customer Name: %s\n", customerName);
+    printf("Units Consumed: %d\n", unitsConsumed);
+    printf("Charge per unit: Ksh %d\n", chargePerUnit); // Displaying the charge per unit for transparency
+    printf("Total Bill: Ksh %.2f\n", totalBill);
+
+    return 0;
+}
+
+Question 3
+# Prompt the user to enter employee name, hours worked, and rate per hour
+name = input("Enter employee name: ")
+hours = float(input("Enter hours worked: "))
+rate = float(input("Enter rate per hour: "))
+
+# Calculate basic pay
+basic_pay = hours * rate
+
+# Calculate tax
+if basic_pay > 70000:
+    tax = 0.25 * basic_pay
+elif 15000 <= basic_pay <= 70000:
+    tax = 0.15 * basic_pay
+else:
+    tax = 0
+
+# Display results
+print("Employee name:", name)
+print("Basic pay:", basic_pay)
+print("Tax:", tax)
